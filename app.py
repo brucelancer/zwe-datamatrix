@@ -85,18 +85,25 @@ def displayResult(data):
             # Extract Lot information
             lot = "Lot: " + data[lot_start:last_digit_index + 1]
             extra_type = data[last_digit_index + 1:delimiter_index]
-            
+
             # Extract all characters after the delimiter for SN
-            sn = "SN: " + data[delimiter_index + 1 + 2:]
+            sn_raw = data[delimiter_index + 1 + 2:]
+
+            # Filter out non-digit characters from SN
+            sn = "SN: " + ''.join(char for char in sn_raw if char.isdigit())
         else:
             lot = "Lot: " + data[lot_start:]
             extra_type = ""
 
             # Extract all characters after the delimiter for SN
-            sn = "SN: " + data[-(delimiter_index + 1 + 2):]
+            sn_raw = data[lot_start:]
+
+            # Filter out non-digit characters from SN
+            sn = "SN: " + ''.join(char for char in sn_raw if char.isdigit())
 
     result_text = pc + "\n" + exp + "\n" + lot + extra_type + "\n" + sn
     return result_text
+
 
 # GS1 Myanmar pdf file generate 
 def generate_pdf(data):
@@ -155,8 +162,8 @@ def generate_pdf(data):
     This attachment is about Verifying your Data Matrix that was produced from GS1 Myanmar. You can use our Data Matrix in your Product, Website, Marketing, Healthcare, Events etc. If there is any issues related to 'YOUR DISTRIBUTIONS' of Data Matrix produced by GS1 Myanmar, we would like to inform you that we will not be responsible for solving it aspect an error of GS1 Myanmar Data Matrix Generator(Bad resolution, ECC error and Quietzone Error). If you had an error with our generator contact us as soon as possible.    '''
     pdf.multi_cell(0, 10, text, align='J')
 
-     # Check if the input data starts with "http://" or "https://"
-    if not data.startswith("http://") and not data.startswith("https://"):
+     # Check if the input data did not starts with "Z to Z" in search engine
+    if not data[0].isalpha() and not data[0].isupper():
         # Display the result data
         result_text = displayResult(data)
         pdf.set_font("Arial", style='B', size=10)

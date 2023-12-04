@@ -65,7 +65,7 @@ def displayResult(data):
     if len(data) == 16:
         pc = "Product Code: " + data[2:]
         exp = "Expiry Date: " + data[2:]  
-        lot = "Lot: " + data[2:]
+        lot = "LOT: " + data[2:]
         sn = "SN: " + data[2:]
     else:
         pc = "Product Code: " + data[2:16]
@@ -83,7 +83,7 @@ def displayResult(data):
                 last_digit_index -= 1
 
             # Extract Lot information
-            lot = "Lot: " + data[lot_start:last_digit_index + 1]
+            lot = "LOT: " + data[lot_start:last_digit_index + 1]
             extra_type = data[last_digit_index + 1:delimiter_index]
 
             # Extract all characters after the delimiter for SN
@@ -92,7 +92,7 @@ def displayResult(data):
             # Filter out non-digit characters from SN
             sn = "SN: " + ''.join(char for char in sn_raw if char.isdigit())
         else:
-            lot = "Lot: " + data[lot_start:]
+            lot = "LOT: " + data[lot_start:]
             extra_type = ""
 
             # Extract all characters after the delimiter for SN

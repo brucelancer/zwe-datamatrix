@@ -90,7 +90,7 @@ def displayResult(data):
             sn_raw = data[delimiter_index + 1 + 2:]
 
             # Filter out non-digit characters from SN
-            sn = "SN: " + ''.join(char for char in sn_raw if char.isdigit())
+            sn = "SN: " + sn_raw
         else:
             lot = "LOT: " + data[lot_start:]
             extra_type = ""

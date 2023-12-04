@@ -159,7 +159,7 @@ def generate_pdf(data):
     pdf.set_text_color(1, 45, 108)  # Set text color to default (GS1 Standard)
     pdf.set_xy(10, additional_text_y)
     text = '''
-    This attachment is about Verifying your Data Matrix that was produced from GS1 Myanmar. You can use our Data Matrix in your Product, Website, Marketing, Healthcare, Events etc. If there is any issues related to 'YOUR DISTRIBUTIONS' of Data Matrix produced by GS1 Myanmar, we would like to inform you that we will not be responsible for solving it aspect an error of GS1 Myanmar Data Matrix Generator(Bad resolution, ECC error and Quietzone Error). If you had an error with our generator contact us as soon as possible.    '''
+    This attachment is about Verifying your Data Matrix that was produced by GS1 Myanmar. You can use our Data Matrix in your Product, Website, Marketing, Healthcare, Events etc. If there is any issues related to 'YOUR DISTRIBUTIONS' of Data Matrix produced by GS1 Myanmar, we would like to inform you that we will not be responsible for solving it aspect an error of GS1 Myanmar Data Matrix Generator(Bad resolution, ECC error and Quietzone Error). If you had an error with our generator contact us as soon as possible.    '''
     pdf.multi_cell(0, 10, text, align='J')
 
      # Check if the input data did not starts with "Z to Z" in search engine
